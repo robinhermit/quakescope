@@ -74,7 +74,7 @@ Follow these steps after having built QuakeScope hardware.
 1. download this repository and unzip it in a known folder;
 2. quit SuperCollider (or not! up to you);
 3. connect QuakeScope interface to the computer via USB and wait till it powers up;
-4. open `setup.scd` file by double clicking it: this will launch SuperCollider;
+4. open `setup-quakescope.scd` file by double clicking it: this will launch SuperCollider;
 5. make sure the post window is open, by ticking Post Window in the View > Docklets menu in SuperCollider;
 6. click anywhere below the first line (you should see a cursor blink in that spot);
 7. execute the whole thing by pressing cmd+enter; it should flash for an instant and display " environment is set up! " in the post window;
