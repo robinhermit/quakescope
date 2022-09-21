@@ -11,7 +11,7 @@ This application requires the presence of the following programs on the running 
 - SuperCollider (https://supercollider.github.io/);
 - Arduino (https://www.arduino.cc/en/software)
 
-Addional harware required is listed below. QuakeScope software is distributed in this repository as well.
+Addional harware required is listed below; all QuakeScope-specific software is provided in this repository.
 
 ## Instructions - hardware
 
@@ -30,7 +30,7 @@ Hardware requirements for the controller circuit:
 
 ### Circuit
 Here a quick overview of the Arduino based circuit is provided, with the connections for each element. Find a graphic overwiew in the attached `Fritzing-plain` and `Fritzing-hand` files.
-Note: thumb, index and middle fingers are imagined to be wrapped in conductive tape beforehand.
+Note: thumb, index and middle fingers on the gloves are imagined to be wrapped in conductive tape beforehand.
 Arduino digital pins are marked as D1, D2 etc.; analog pins are marked A1, A2 etc.; 5V and 3V are called as on the Arduino; GND represents any of the GND pins on Arduino.
 
 #### LIS3DH
