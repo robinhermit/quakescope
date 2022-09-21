@@ -114,3 +114,4 @@ This error is mostly caused by `~ee.()` failing to connect with the previous ste
 
 #### any other weird error in SC post window:
 - try executing `~aa.()` in `control.scd`, before repeating all the steps 1-15
+
