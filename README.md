@@ -77,7 +77,7 @@ Follow these steps after having built QuakeScope hardware.
 4. open `setup-quakescope.scd` file by double clicking it: this will launch SuperCollider;
 5. make sure the post window is open, by ticking Post Window in the View > Docklets menu in SuperCollider;
 6. click anywhere below the first line (you should see a cursor blink in that spot);
-7. execute the whole thing by pressing cmd+enter; it should flash for an instant and display " environment is set up! " in the post window;
+7. execute the whole setup.scd by pressing cmd+enter; it should flash for an instant and display " environment is set up! " in the post window;
 8. open `control.scd` file by double clicking it; it should open in SuperCollider, in a new tab. This file contains a sequence of functions to start QuakeScope;
 9. place the cursor on line 3, where you see `~bb.();`, by left clicking there;
 10. execute the line by pressing cmd+enter; this will open QuakeScope GUI (it might take a couple of seconds);
@@ -102,16 +102,27 @@ Have fun and feel free to propose edits to this app!
 - try closing the GUI window and repeating steps 9-15;
 - if this doesn't work, close the GUI window, execute `~aa.();` in line 1; then disconnect the controller, reconnect and repeat steps 9-15;
 
+#### Map is not displayed in the main GUI window and/or in the dedicated window
+Most likely a reboot has made
+
 #### "Protected Call Stack" in post window
 - cmd+dot (cmd key and dot key) to quit the server;
 - if this doesn't stop it, right click on "Interpreter" at the bottom of the SuperCollider IDE, then "Quit interpreter"
 - Click "Language", then "Reboot Interpreter" in SuperCollider IDE
+- repeat steps 7-15.
 
 This error is mostly caused by `~ee.()` failing to connect with the previous steps. To make sure this doesn't occur, follow carefully the steps listed above.
 - `bb.()` has to go first
 - then select USB port
 - then execute `~cc.()`, `~dd.()`, `~ee.()` in the order illustrated.
 
+Sometimes closing the main GUI control window will cause this error to happen. 
+To prevent this, it's good to cmd+period before closing the GUI window.
+
+#### "ERROR: Input sample rate is 48000, but output is 44100" or similar
+The input sample rate is something different than 44100. 
+To fix this, set your audio input sample size to 44100, via AudioMidi Setup on OSX, then execute line 1 in `control.scd` to reset SC. Repeat steps 7-15.
+
 #### any other weird error in SC post window:
-- try executing `~aa.()` in `control.scd`, before repeating all the steps 1-15
+- try executing line 1 `~aa.()` in `control.scd`, before repeating all the steps 4-15. 
 
