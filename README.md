@@ -59,7 +59,6 @@ It's recommended to wrap in additional conductive tape, as index finger:
 #### Glove Thumb
 - 1 wire -> Arduino 5V
 
-Optional:
 to verify the circuit works correctly, open `arduino-code.ino` on your computer;
 this should launch the Arduino IDE and display the code in a window.
 Connect the Arduino port via USB (this should light up the board and the accelerometer). 
@@ -69,11 +68,21 @@ if the uploading is successfull, open the serial port in the IDE to verify that 
 Verify the fingers are operating correctly by making index and thumb touch (this should change the first digit posted to "1"),
 and by making middle finger and thumb touch (this should result in the last posted digit to turn into "1").
 
+This operation also uploads the code to the Arduino for future uses, so it's only done once.
+
 ## Instructions - software
+QuakeScope consists of two SuperCollider files: `setup-quakescope.scd` and `control.scd`. The former contains the entire program, divided in 5 functional blocks:
+- `~aa = {..};` is a panic button that efficiently resets the SuperCollider environment to default settings. In general shouldn't be needed (see Troubleshooting).
+- `~bb = {..};` is the first block to be executed. It launches the GUI, initializes synths and dataset(s).
+- `~cc = {..};` is executed after selecting a valid USB port. It launches the main event stream task, which creates sound events in relation to each datapoint according to a scaled timeline.
+- `~dd = {..};` encodes binaural information at sensor rate (30ms), updates some GUI functions.
+- `~ee = {..};` controls the main interface actions at sensor rate (30ms)
+
+### Steps
 Follow these steps after having built QuakeScope hardware.
 1. download this repository and unzip it in a known folder;
 2. quit SuperCollider (or not! up to you);
-3. connect QuakeScope interface to the computer via USB and wait till it powers up;
+3. connect QuakeScope interface to the computer via USB and wait till it powers up. Note: you need to have already uploaded `arduino-code.ino` on the controller;
 4. open `setup-quakescope.scd` file by double clicking it: this will launch SuperCollider;
 5. make sure the post window is open, by ticking Post Window in the View > Docklets menu in SuperCollider;
 6. click anywhere below the first line (you should see a cursor blink in that spot);
@@ -83,7 +92,7 @@ Follow these steps after having built QuakeScope hardware.
 10. execute the line by pressing cmd+enter; this will open QuakeScope GUI (it might take a couple of seconds);
 11. try clicking "Open map" on the GUI; it should open a map of Iceland in a separate window. If this works, click "Close map"
 12. select the USB port the interface is plugged into by clicking on the popup menu at the top of the GUI 
-(a success message in the post window will confirm correct booting); 
+(a success message in the post window will confirm correct booting and reading) - 
 if the connection was successfull, the slider at the bottom of the GUI will move according to accelerometer movement;
 13. execute `~cc.();` in `control.scd` line 5: this will print `Tdef('eventStream')` in the post window;
 14. execute `~dd.();` in `control.scd` line 7: this will print `Tdef('volContextUpdate')` in the post window;
@@ -103,10 +112,11 @@ Have fun and feel free to propose edits to this app!
 - if this doesn't work, close the GUI window, execute `~aa.();` in line 1; then disconnect the controller, reconnect and repeat steps 9-15;
 
 #### Map is not displayed in the main GUI window and/or in the dedicated window
-Most likely a reboot has made
+Most likely a reboot has failed to reload the background map. Cmd+period and close the GUI window if this happens. 
+Then repeat steps 9-15 to restart QuakeScope.
 
 #### "Protected Call Stack" in post window
-- cmd+dot (cmd key and dot key) to quit the server;
+- cmd+period (command key and dot key) to quit the server;
 - if this doesn't stop it, right click on "Interpreter" at the bottom of the SuperCollider IDE, then "Quit interpreter"
 - Click "Language", then "Reboot Interpreter" in SuperCollider IDE
 - repeat steps 7-15.
