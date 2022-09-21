@@ -229,7 +229,7 @@ SynthDef(\victor, {
 		gate, doneAction: Done.freeSelf);
  //snd = Clip.ar(snd, -0.3, 0.3);
  snd2 = snd;
- dist = InsideOut.ar(snd2);
+ dist = Clip.ar(snd2);
  env_d = EnvGen.kr(
 		Env.adsr(0.01, 0.3, 0, 0.5), g);
  dist = dist*env_d;
@@ -324,9 +324,9 @@ SynthDef(\click, {
 
 // it takes too long to convert the entire column. consider formatting the dataset iso+std from py
 // this CSV contains ISO timestamps
-~earthquakesCSV = CSVFileReader.read("/Users/Robin/Desktop/vi semester/Summer Internship - IIL/earthquakes/earthquakes_aug21-22.csv", true, true);
+~earthquakesCSV = CSVFileReader.read(thisProcess.nowExecutingPath.dirname+/+"earthquakes_aug21-22.csv", true, true);
 //this contains original unix timestamps
-~timesourceCSV = CSVFileReader.read("/Users/Robin/Desktop/vi semester/Summer Internship - IIL/earthquakes/aug2021-aug2022_2.csv", true, true);
+~timesourceCSV = CSVFileReader.read(thisProcess.nowExecutingPath.dirname+/+"aug2021-aug2022_2.csv", true, true);
 ~earthquakesCSV.removeAt(0); // column names is in entry 0
 ~timesourceCSV.removeAt(0); // remove to keep same size
 // put all in a dictionary and cut out first entry for each array (column's name)
